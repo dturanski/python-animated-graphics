@@ -1,13 +1,27 @@
+# This will import the graphics tools we will use in our program.
 from graphics import *
 
-graphics = Graphics(1000, 800)
+# This will create a space on which we will draw our graphics.
+graphics = Graphics(500, 800)
 
-circle = graphics.circle((100, 100), 50, fill="yellow")
+graphics.circle((100, 100), 50, fill="yellow")
 
-points = [(250, 150), (350, 250), (150, 250)]
+graphics.rectangle((200, 300), (450, 550), fill="orange")
 
-triangle = graphics.polygon(points, outline='black', fill='brown', width=2)
+graphics.polygon([(200, 300), (450, 300), (325, 150)], fill="brown")
 
-rectangle = graphics.rectangle((150, 250),(350, 450), fill='orange')
+graphics.rectangle((290, 425), (360, 550), fill="red")
+
+graphics.rectangle((220, 320), (300, 400), fill="white")
+
+graphics.rectangle((350, 320), (430, 400), fill="white")
+
+graphics.canvas.create_line(220,360,300,360)
+
+graphics.canvas.create_line(260,320,260,400)
+
+graphics.canvas.create_line(350,360,430,360)
+
+graphics.canvas.create_line(390,320,390,400)
 
 graphics.show()

@@ -68,7 +68,7 @@ class Graphics:
         if xmin < 0:
             raise ValueError("The minimum boundary x=%d cannot be less than 0" % xmin)
 
-        if ymax > self.width:
+        if ymax > self.height:
             raise ValueError(
                 "The shape extends beyond the canvas: y=%d is greater than window height %d " % (ymax, self.height))
 

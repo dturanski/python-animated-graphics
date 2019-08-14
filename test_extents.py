@@ -47,6 +47,8 @@ class ExtentsTestCase(unittest.TestCase):
             graphics.checkbounds([(0, -100)])
             self.assertTrue(
                 'The minimum boundary y=-100 cannot be less than 0' in context.exception)
+        graphics = Graphics(500, 800)
+        graphics.rectangle((200,300),(400,700))
 
 
 if __name__ == '__main__':
