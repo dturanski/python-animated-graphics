@@ -54,6 +54,11 @@ class Graphics:
         self.checkbounds(points)
         return self.canvas.create_polygon(points, kwargs)
 
+    def line(self, a, b , **kwargs):
+        self.checkbounds([a, b])
+        xmin, ymin, xmax, ymax = extent([a, b])
+        return self.canvas.create_line(xmin,ymin,xmax, ymax, kwargs)
+
     def show(self):
         self.canvas.pack()
         self.tk.mainloop()

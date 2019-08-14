@@ -16,12 +16,12 @@ graphics.rectangle((220, 320), (300, 400), fill="white")
 
 graphics.rectangle((350, 320), (430, 400), fill="white")
 
-graphics.canvas.create_line(220,360,300,360)
+graphics.line((220,360),(300,360))
 
-graphics.canvas.create_line(260,320,260,400)
+graphics.line((260,320),(260,400))
 
-graphics.canvas.create_line(350,360,430,360)
+graphics.line((350,360),(430,360))
 
-graphics.canvas.create_line(390,320,390,400)
+graphics.line((390,320),(390,400))
 
 graphics.show()
