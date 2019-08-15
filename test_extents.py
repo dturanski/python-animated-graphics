@@ -35,21 +35,6 @@ class ExtentsTestCase(unittest.TestCase):
         self.assertEqual(1002, ymin)
         self.assertEqual(1002, ymax)
 
-    def test_checkbounds(self):
-        graphics = Graphics(1000, 1000);
-        with self.assertRaises(ValueError) as context:
-            graphics.checkbounds([(1002, 0)])
-            self.assertTrue(
-                'The shape extends beyond the canvas: x=1002 is greater than canvas width 1000' in context.exception)
-            graphics.checkbounds([(0, 1002)])
-            self.assertTrue(
-                'The shape extends beyond the canvas: y=1002 is greater than canvas height 1000' in context.exception)
-            graphics.checkbounds([(0, -100)])
-            self.assertTrue(
-                'The minimum boundary y=-100 cannot be less than 0' in context.exception)
-        graphics = Graphics(500, 800)
-        graphics.rectangle((200,300),(400,700))
-
 
 if __name__ == '__main__':
     unittest.main()

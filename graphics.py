@@ -67,15 +67,15 @@ class Graphics:
         xmin, ymin, xmax, ymax = extent(points);
 
         if xmax > self.width:
-            raise ValueError(
-                "The shape extends beyond the canvas: x=%d is greater than canvas width %d" % (xmax, self.width))
+            print(
+                "WARNING:The shape extends beyond the canvas: x=%d is greater than canvas width %d" % (xmax, self.width))
 
         if xmin < 0:
-            raise ValueError("The minimum boundary x=%d cannot be less than 0" % xmin)
+            print("WARNING: The minimum boundary x=%d cannot be less than 0" % xmin)
 
         if ymax > self.height:
-            raise ValueError(
-                "The shape extends beyond the canvas: y=%d is greater than window height %d " % (ymax, self.height))
+            print(
+                "WARNING:The shape extends beyond the canvas: y=%d is greater than window height %d " % (ymax, self.height))
 
         if ymin < 0:
-            raise ValueError("The minimum boundary y=%d cannot be less than 0" % ymin)
+           print("WARNING: The minimum boundary y=%d cannot be less than 0" % ymin)
