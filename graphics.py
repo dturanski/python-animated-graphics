@@ -37,6 +37,7 @@ class Graphics:
         self.width = w
         self.height = h
         self.canvas = Canvas(self.tk, width=self.width, height=self.height)
+        self.canvas.pack()
 
     def circle(self, center, radius, **kwargs):
         x, y = center
@@ -54,13 +55,23 @@ class Graphics:
         self.checkbounds(points)
         return self.canvas.create_polygon(points, kwargs)
 
-    def line(self, a, b , **kwargs):
+    def line(self, a, b, **kwargs):
         self.checkbounds([a, b])
         xmin, ymin, xmax, ymax = extent([a, b])
-        return self.canvas.create_line(xmin,ymin,xmax, ymax, kwargs)
+        return self.canvas.create_line(xmin, ymin, xmax, ymax, kwargs)
+
+    def coords(self, obj):
+        points = self.canvas.coords(obj)
+        coords = []
+        for i in range(0, len(points), 2):
+            coords.append((points[i], points[i + 1]))
+        return coords
+
+    def move(self,obj, delta):
+        self.canvas.move(obj,delta[0], delta[1])
+        self.tk.update()
 
     def show(self):
-        self.canvas.pack()
         self.tk.mainloop()
 
     def checkbounds(self, points):
@@ -68,14 +79,16 @@ class Graphics:
 
         if xmax > self.width:
             print(
-                "WARNING:The shape extends beyond the canvas: x=%d is greater than canvas width %d" % (xmax, self.width))
+                "WARNING:The shape extends beyond the canvas: x=%d is greater than canvas width %d" % (
+                xmax, self.width))
 
         if xmin < 0:
             print("WARNING: The minimum boundary x=%d cannot be less than 0" % xmin)
 
         if ymax > self.height:
             print(
-                "WARNING:The shape extends beyond the canvas: y=%d is greater than window height %d " % (ymax, self.height))
+                "WARNING:The shape extends beyond the canvas: y=%d is greater than window height %d " % (
+                ymax, self.height))
 
         if ymin < 0:
-           print("WARNING: The minimum boundary y=%d cannot be less than 0" % ymin)
+            print("WARNING: The minimum boundary y=%d cannot be less than 0" % ymin)
