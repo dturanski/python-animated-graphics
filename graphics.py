@@ -69,7 +69,11 @@ class Graphics:
 
     def move(self,obj, delta):
         self.canvas.move(obj,delta[0], delta[1])
-        self.tk.update()
+
+    def update(self, after=20):
+        self.canvas.update()
+        self.canvas.after(after)
+
 
     def show(self):
         self.tk.mainloop()
@@ -92,3 +96,18 @@ class Graphics:
 
         if ymin < 0:
             print("WARNING: The minimum boundary y=%d cannot be less than 0" % ymin)
+
+class Group:
+    def __init__(self, graphics):
+        self.graphics = graphics
+        self.objects = []
+
+    def add(self, object):
+        self.objects.append(object)
+
+    def move(self, delta):
+        for obj in self.objects:
+            self.graphics.move(obj,delta)
+        self.graphics.update()
+
+

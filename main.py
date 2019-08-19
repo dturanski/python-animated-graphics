@@ -1,11 +1,22 @@
-# This will import the graphics tools we will use in our program.
-from graphics import *
+from tkinter import * # version 3.x
 
-# This will create a space on which we will draw our graphics.
-graphics = Graphics(500, 800)
+tk = Tk()
 
-line = graphics.line((0,360),(600,360))
+frame = Frame(tk)
+canvas = Canvas(frame) # use canvas
 
-print(graphics.coords(line))
+frame.pack(fill = BOTH, expand = 1)
+canvas.pack(fill = BOTH, expand = 1)
 
-graphics.show()
+ball = canvas.create_oval(10, 10, 30, 30, tags = 'ball') # create object to animate
+
+def animation(x_move, y_move):
+    canvas.move(ball, x_move, y_move) # movement
+    canvas.update()
+    canvas.after(20) # milliseconds in wait time, this is 50 fps
+
+    tk.after_idle(animation, x_move, y_move) # loop variables and animation, these are updatable variables
+
+animation(2, 2) # run animation
+
+tk.mainloop()
