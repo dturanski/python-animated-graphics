@@ -60,20 +60,19 @@ class Graphics:
         xmin, ymin, xmax, ymax = extent([a, b])
         return self.canvas.create_line(xmin, ymin, xmax, ymax, kwargs)
 
-    def coords(self, obj):
-        points = self.canvas.coords(obj)
+    def coords(self, obj, *args):
+        points = self.canvas.coords(obj,*args)
         coords = []
         for i in range(0, len(points), 2):
             coords.append((points[i], points[i + 1]))
         return coords
 
-    def move(self,obj, delta):
-        self.canvas.move(obj,delta[0], delta[1])
+    def move(self, obj, delta):
+        self.canvas.move(obj, delta[0], delta[1])
 
     def update(self, after=20):
         self.canvas.update()
         self.canvas.after(after)
-
 
     def show(self):
         self.tk.mainloop()
@@ -84,7 +83,7 @@ class Graphics:
         if xmax > self.width:
             print(
                 "WARNING:The shape extends beyond the canvas: x=%d is greater than canvas width %d" % (
-                xmax, self.width))
+                    xmax, self.width))
 
         if xmin < 0:
             print("WARNING: The minimum boundary x=%d cannot be less than 0" % xmin)
@@ -92,22 +91,21 @@ class Graphics:
         if ymax > self.height:
             print(
                 "WARNING:The shape extends beyond the canvas: y=%d is greater than window height %d " % (
-                ymax, self.height))
+                    ymax, self.height))
 
         if ymin < 0:
             print("WARNING: The minimum boundary y=%d cannot be less than 0" % ymin)
+
 
 class Group:
     def __init__(self, graphics):
         self.graphics = graphics
         self.objects = []
 
-    def add(self, object):
-        self.objects.append(object)
+    def add(self, obj):
+        self.objects.append(obj)
 
     def move(self, delta):
         for obj in self.objects:
-            self.graphics.move(obj,delta)
+            self.graphics.move(obj, delta)
         self.graphics.update()
-
-
