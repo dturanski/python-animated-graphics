@@ -39,8 +39,8 @@ class Graphics:
 
     def __init__(self, w, h):
         self.tk = Tk()
-        self.width = w + 10
-        self.height = h + 10
+        self.width = w 
+        self.height = h
         self.canvas = Canvas(self.tk, width=self.width, height=self.height)
         self.canvas.pack()
 
@@ -61,7 +61,7 @@ class Graphics:
             x_off = 0
             if i > 0 :
                 x_off = 15
-            label.place(x=i-x_off,y=h)
+            label.place(x =i - x_off, y = h )
 
         # Creates all horizontal lines at intevals of 100
         for i in range(0, h, size):
@@ -70,7 +70,7 @@ class Graphics:
             y_off = 0
             if i > 0 :
                 y_off = 15
-            label.place(x=0,y=i - y_off)
+            label.place(x = 0, y = i - y_off)
             self.line((0, i), (w, i), fill=color, tag='grid_line')
 
     def hide_grid(self):
