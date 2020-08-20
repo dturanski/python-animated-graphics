@@ -4,7 +4,7 @@ from graphics import *
 # This will create a space on which we will draw our graphics.
 graphics = Graphics(600, 600)
 
-graphics.show_grid(50)
+graphics.show_grid(100)
 
 graphics.circle((100, 100), 50, fill="yellow")
 

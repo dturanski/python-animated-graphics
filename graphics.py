@@ -52,24 +52,29 @@ class Graphics:
 
     def show_grid(self, size=50, color='black'):
         w = self.width # Get current width of canvas
-        h = self.height -20 # Get current height of canvas
+        h = self.height # Get current height of canvas
 
         # Creates all vertical lines at intevals of 100
-        for i in range(0, w, size):
+        for i in range(0, w + size, size):
             self.line((i, 0), (i, h), fill=color, tag='grid_line')
             label = Label(self.canvas, text=str(i),fg='red')
             x_off = 0
             if i > 0 :
                 x_off = 15
-            label.place(x =i - x_off, y = h )
+            if i == w:
+                print("w....")
+                x_off = 25
+            label.place(x =i - x_off, y = 0 )
 
         # Creates all horizontal lines at intevals of 100
-        for i in range(0, h, size):
+        for i in range(0, h + size, size):
            
             label = Label(self.canvas, text=str(i),fg='red')
             y_off = 0
             if i > 0 :
                 y_off = 15
+            if i == h :
+                y_off = 20
             label.place(x = 0, y = i - y_off)
             self.line((0, i), (w, i), fill=color, tag='grid_line')
 
