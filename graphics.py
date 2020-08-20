@@ -1,5 +1,10 @@
-from tkinter import *
+import os
+if 'TK_SILENCE_DEPRECATION' not in os.environ:
+    os.environ['TK_SILENCE_DEPRECATION']='1'
+from tkinter import Tk,Canvas,Label
 import sys
+
+
 
 
 def extent(points):
@@ -34,8 +39,8 @@ class Graphics:
 
     def __init__(self, w, h):
         self.tk = Tk()
-        self.width = w
-        self.height = h
+        self.width = w + 10
+        self.height = h + 10
         self.canvas = Canvas(self.tk, width=self.width, height=self.height)
         self.canvas.pack()
 
@@ -44,6 +49,32 @@ class Graphics:
         self.checkbounds([(x - radius, y - radius), (x + radius, y + radius)])
 
         return self.canvas.create_oval(x - radius, y - radius, x + radius, y + radius, kwargs)
+
+    def show_grid(self, size=50, color='black'):
+        w = self.width # Get current width of canvas
+        h = self.height -20 # Get current height of canvas
+
+        # Creates all vertical lines at intevals of 100
+        for i in range(0, w, size):
+            self.line((i, 0), (i, h), fill=color, tag='grid_line')
+            label = Label(self.canvas, text=str(i),fg='red')
+            x_off = 0
+            if i > 0 :
+                x_off = 15
+            label.place(x=i-x_off,y=h)
+
+        # Creates all horizontal lines at intevals of 100
+        for i in range(0, h, size):
+           
+            label = Label(self.canvas, text=str(i),fg='red')
+            y_off = 0
+            if i > 0 :
+                y_off = 15
+            label.place(x=0,y=i - y_off)
+            self.line((0, i), (w, i), fill=color, tag='grid_line')
+
+    def hide_grid(self):
+        self.canvas.delete('grid_line')
 
     def rectangle(self, topleft, bottomright, **kwargs):
 

@@ -4,6 +4,8 @@ from graphics import *
 # This will create a space on which we will draw our graphics.
 graphics = Graphics(500, 800)
 
+graphics.show_grid(50)
+
 graphics.circle((100, 100), 50, fill="yellow")
 
 graphics.rectangle((200, 300), (450, 550), fill="orange")
